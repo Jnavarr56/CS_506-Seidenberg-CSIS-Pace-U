@@ -1,12 +1,52 @@
 /*
-F = ((AB'+ C)' ⊕ (((CD) ' + B) + A)) '
+F = ((AB'+ C)' ⊕ (((CD)' + B) + A))' 
 
 Using the above Boolean function;
 
 Draw the logic circuit diagram of it
 Generate its Truth Table
 Test the logic circuit using two sets of sample data; one for F = 0, another for F = 1
- Submit your work as a PDF or Word file.
+Submit your work as a PDF or Word file.
+
+TRUTH TABLE
+
+ #  | A | B | C | D |    !(!( ( a && !b ) || c) XOR (( !(c && d) || b) || a))
+----------------------------------------------------------------------
+  1 | T | T | T | T |     F
+  2 | T | T | T | F |     F
+  3 | T | T | F | T |     T
+  4 | T | T | F | F |     T
+  5 | T | F | T | T |     F
+  6 | T | F | T | F |     F
+  7 | T | F | F | T |     F
+  8 | T | F | F | F |     F
+  9 | F | T | T | T |     F
+ 10 | F | T | T | F |     F
+ 11 | F | T | F | T |     T
+ 12 | F | T | F | F |     T
+ 13 | F | F | T | T |     T
+ 14 | F | F | T | F |     F
+ 15 | F | F | F | T |     T
+ 16 | F | F | F | F |     T
+
+
+
+
+
+TEST #1 FROM ROW 3
+| A | B | C | D |    !( ( 1 && !1 ) || 0) XOR (( !(0 && 1) || 1) || 1)
+----------------------------------------------------------------------
+| 1 | 1 | 0 | 1 |         1
+
+
+TEST #2 FROM ROW 7
+| A | B | C | D |    !( ( 1 && !0 ) || 0) XOR (( !(0 && 1) || 0) || 1)
+----------------------------------------------------------------------
+| 1 | 0 | 0 | 1 |         0
+
+
+
+
 
 */
 
@@ -125,45 +165,3 @@ const testData = () => {
 testData();
 
 
-/*
-BOOLEAN FUNCTION
-F = ((AB'+ C)' ⊕ (((CD)' + B) + A))' 
-
-
-TRUTH TABLE
-
- #  | A | B | C | D |    !(!( ( a && !b ) || c) XOR (( !(c && d) || b) || a))
-----------------------------------------------------------------------
-  1 | T | T | T | T |     F
-  2 | T | T | T | F |     F
-  3 | T | T | F | T |     T
-  4 | T | T | F | F |     T
-  5 | T | F | T | T |     F
-  6 | T | F | T | F |     F
-  7 | T | F | F | T |     F
-  8 | T | F | F | F |     F
-  9 | F | T | T | T |     F
- 10 | F | T | T | F |     F
- 11 | F | T | F | T |     T
- 12 | F | T | F | F |     T
- 13 | F | F | T | T |     T
- 14 | F | F | T | F |     F
- 15 | F | F | F | T |     T
- 16 | F | F | F | F |     T
-
-
-
-
-
-TEST #1 FROM ROW 3
-| A | B | C | D |    !( ( 1 && !1 ) || 0) XOR (( !(0 && 1) || 1) || 1)
-----------------------------------------------------------------------
-| 1 | 1 | 0 | 1 |         1
-
-
-TEST #2 FROM ROW 7
-| A | B | C | D |    !( ( 1 && !0 ) || 0) XOR (( !(0 && 1) || 0) || 1)
-----------------------------------------------------------------------
-| 1 | 0 | 0 | 1 |         0
-
-*/
