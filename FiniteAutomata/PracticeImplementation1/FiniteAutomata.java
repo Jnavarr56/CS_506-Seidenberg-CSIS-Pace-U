@@ -3,10 +3,27 @@
 public class FiniteAutomata {
 
     private int index = 0;
-
     private int indexTerminate;
 
     private String input;
+
+    private void increment() {
+        
+        index = index < indexTerminate ? index + 1 : index;
+    
+    }
+
+    private boolean isLastChar() {
+        
+        return index == indexTerminate;
+    
+    }
+
+    private boolean isChar(int index, char character) {
+        
+        return input.charAt(index) == character;
+    
+    }
 
     private void reject() { System.out.println("REJECT"); }
 
@@ -16,88 +33,55 @@ public class FiniteAutomata {
 
         this.input = input;
 
-        this.indexTerminate = input.length() - 1;
+        indexTerminate = input.length() - 1;
+
+        q0();
 
     }
 
-    public void run() {
-
-        this.q0();
-
-    }
-
+    // START STATE
+    // REJECTION  STATE
     private void q0() {
         
-        if (this.input.charAt(index) == 'a') {
+        if (isChar(index, 'a')) { q1(); }
 
-            this.q1();
-
-        }
-
-        else {
-
-            this.reject();
-
-        }
+        else { reject(); }
 
     }
 
-    // FINAL REJECT
+    // STATE 1
+    // REJECTION  STATE
     private void q1() {
 
-        this.index = this.index < this.indexTerminate ? this.index + 1 : this.index;
+        increment();
         
-        if (input.charAt(this.index) == 'z') {
-
-            this.q2();
-
-        }
+        if (isChar(index, 'z')) { q2(); }
 
         else {
 
-            if (this.index == this.indexTerminate) {
+            if (isLastChar()) { reject(); }
 
-                this.reject();
-
-            }
-
-            else {
-
-                this.q1();
-
-            }
+            else { q1(); }
 
         }
 
     }
 
-    // FINAL ACCEPT
+    // STATE 2
+    // ACCEPTANCE STATE
     private void q2() {
 
-        this.index = this.index < this.indexTerminate ? this.index + 1 : this.index;
+        increment();
 
-        if (input.charAt(this.index) == 'z') {
+        if (isChar(index, 'z')) {
 
-            if (this.index == this.indexTerminate) {
+            if (isLastChar()) { accept(); }
 
-                this.accept();
-
-            }
-
-            else {
-
-                this.q2();
-
-            }
+            else { q2(); }
 
         }
 
-        else {
-
-            this.q1();
-
-        }
-
+        else { q1(); }
 
     }
 
